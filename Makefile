@@ -16,23 +16,23 @@ all:	$(PROGS)
 install:	$(PROGS)
 	cp $(PROGS) ../../bin
 
-siphash24_test:	siphash24_test.o siphash24.o siphash24inc.o
+siphash24_test:	src/siphash24_test.o src/siphash24.o src/siphash24inc.o
 	$(CXXLD) -o $@ $^ $(LDFLAGS)
 
-cdrparity:	cdrparity.o siphash24inc.o
+cdrparity:	src/cdrparity.o src/siphash24inc.o
 	$(CXXLD) -o $@ $^ $(LDFLAGS)
 
-cdrparity-v1:	cdrparity-v1.o Marker.o
+cdrparity-v1:	src/cdrparity-v1.o src/Marker.o
 	$(CXXLD) -o $@ $^ $(LDFLAGS)
 
-cdrverify:	cdrverify.o cdrverify-v1.o cdrverify-v2.o siphash24.o
+cdrverify:	src/cdrverify.o src/cdrverify-v1.o src/cdrverify-v2.o src/siphash24.o
 	$(CXXLD) -o $@ $^ $(LDFLAGS)
 
-cdrrepair:	cdrrepair.o siphash24.o
+cdrrepair:	src/cdrrepair.o src/siphash24.o
 	$(CXXLD) -o $@ $^ $(LDFLAGS)
 
-cdrrescue:	cdrrescue.o Marker.o
+cdrrescue:	src/cdrrescue.o src/Marker.o
 	$(CXXLD) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -f $(PROGS) *.o *~ core
+	rm -f $(PROGS) src/*.o *~ core
